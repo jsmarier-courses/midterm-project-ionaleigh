@@ -24,7 +24,14 @@ And to create an unordered list, we simply put a star (`*`) before each item.
 
 ## 1. Introduction
 
-Insert text here.
+This project focuses on a City of Ottawa dataset regarding **service requests related to municipal operations**. The dataset was collected by the City through **resident submissions via various channels, including walk-ins, phone calls, and emails**. It includes details such as **service request IDs, statuses (e.g., resolved, active), types of requests (e.g., bylaw services, road maintenance, garbage collection), descriptions, opened and closed dates, addresses, geographic coordinates (latitude and longitude), and the method of submission**. 
+
+The dataset can be accessed through the following links:
+
+- [Original dataset on Open Ottawa](https://311opendatastorage.blob.core.windows.net/311data/311opendata_lastyear.csv)
+- [CSV version on Github](https://raw.githubusercontent.com/jsmarier/course-datasets/refs/heads/main/ottawa-311-service-requests-august-2024.csv)
+
+The main sections of this assignment will cover getting data, cleaning data, understanding data, and potential storytelling insights.
 
 ## 2. Getting Data
 
