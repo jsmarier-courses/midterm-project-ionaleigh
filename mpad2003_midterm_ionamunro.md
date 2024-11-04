@@ -111,7 +111,7 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 
 #### 1. Validity
 
-- **Status**: The "Status" column predominantly contains "Resolved," "Active," and "Cancelled" entries, which are clear and consistent indicators of each request’s completion status. However, further validation would be beneficial to ensure that all "Resolved" requests genuinely met resolution criteria.
+- **Status**: The "Status" column contains "Resolved," "Active," and "Cancelled" entries, which are clear and consistent indicators of each request’s completion status. However, further validation would be beneficial to ensure that all "Resolved" requests genuinely met resolution criteria.
 - **Type**: Categories like "Garbage and Recycling," "Parking Control," and "Bylaw Services" appear valid, matching common municipal service types. However, some categories are broad, which could impact the specificity of any analysis.
 - **Channel**: Channels such as "Dispatch," "Web," "Walk-In," "Email," and "Voice In" are typical ways residents might interact with city services. Each channel appears valid for this context, though verifying that entries accurately reflect the method used for each request would enhance validity.
 
@@ -122,6 +122,7 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 ---
 
 #### 2. Integrity
+
 - **Missing Values**: The dataset contains numerous missing values (`\N`) in columns like "Address," "Latitude," and "Longitude," which limits the completeness of location data.
 - **Consistency**: There may be inconsistencies in the "Type" column, where the same service type might be recorded differently (e.g., “Garbage and Recycling” vs. “Garbage/Recycling”). Ensuring standardization across entries would improve integrity.
 - **Channel Consistency**: Channels are generally consistent with standard options, but it's important to ensure each request is linked to only one primary channel and that entries match the actual method used.
@@ -131,6 +132,7 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 ---
 
 #### 3. Meaningfulness
+
 - **Status**: The "Status" column provides clear, meaningful information about each request's completion. However, without specific resolution dates, "Resolved" entries may lack sufficient detail to convey how long issues took to address.
 - **Type and Channel**: The "Type" and "Channel" columns add meaningful context about the nature and reporting method of each request, helping identify trends in how citizens interact with services. For instance, the different channels indicate various ways people access city services, revealing preferences that could inform service improvement.
 
@@ -141,6 +143,7 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 ---
 
 #### 4. Organization
+
 - **Column Arrangement**: Columns are arranged logically, starting with request details (e.g., "Status," "Type") and followed by location details (e.g., "Address," "Latitude"), which helps with data interpretation.
 - **Channel Diversity**: Having a range of channels (e.g., "Dispatch," "Web," "Walk-In," "Email," "Voice In") in one column makes the data easy to analyze and simplifies pattern detection. To enhance organization, it may help to group requests by channel to see which are associated with faster resolutions or cancellations.
 
@@ -220,9 +223,23 @@ By following these steps, I ensured that the dataset was clean, organized, and r
 #### 3.3.1 Pivot Table
 
 The following **pivot table** summarizes the number of service requests categorized by type, providing a comprehensive view of the issues most frequently reported by residents. By organizing the data into key categories, we can identify patterns and trends in service requests that highlight the areas of concern within the community. The following sections outline the rationale behind selecting specific variables, key findings from the data, and insights into potential next steps for further investigation.
+<br>
 
 ![Pivot table](MPAD2003A%20Pivot.png)
 *Figure 3: Pivot table showing the number of service requests per type in basic numerical and percentage format.*
+<br>
+
+#### 3.3.2 Exploratory Chart
+
+I chose to represent the data using a **pie chart** because it effectively highlights the smaller values within the dataset. In cases where some values are significantly larger than others, bar graphs can distort the visual representation, making smaller values appear almost negligible or even zero.
+As noted in Statistics Canada’s guidelines on data visualization, *"pie charts are best used for displaying statistical information when there are no more than six components"* because a pie chart succinctly conveys the proportion of each segment relative to the whole (Statistics Canada, 2021). This is particularly useful when components are small and need to be clearly distinguished, as emphasized in their discussion of pie charts: *“the area of each segment is the same proportion of a circle as the category is of the total data set”* (Statistics Canada, 2021).
+<br>
+
+![Pie Chart](MPAD2003A%20Pivot.png)
+*Figure 4: Pie chart showing the number of service requests per type in percentage format.*
+<br>
+
+#### 3.3.3 Analysis
 
 1. **Why did you choose these variables in particular?**
    - I chose to analyze the **Type** of service requests because it provides insight into the types of issues being reported to the city of Ottawa. Understanding the distribution of service requests allows us to identify which areas are most frequently engaged by residents and where the city may need to focus its resources.
@@ -236,20 +253,41 @@ The following **pivot table** summarizes the number of service requests categori
 1. **Which variables and numbers would warrant further investigation (next step)?**
    - Further investigation into the **Garbage and Recycling** requests could help to understand the specific issues being reported (e.g., missed pickups, need for additional bins). Additionally, exploring the **Bylaw Services** requests could reveal trends in community compliance and enforcement issues. Analyzing seasonal trends in requests or demographic factors influencing service requests could provide valuable insights for city planning and resource allocation.
 
-#### 3.3.2 Exploratory Chart
-
-**This section should also include a screen capture of your exploratory chart, like so:**
-
-![](chart-screen-capture.png)
-*Figure 3: This exploratory chart shows...*
+---
 
 ## 4. Potential Story
 
-Insert text here.
+### Potential Story Ideas
+
+1. **Impact of Service Requests on Community Well-being**: Explore how service requests correlate with community satisfaction and well-being. Are there specific areas in Ottawa that report more issues? What does this say about those neighborhoods?
+
+1. **Trends Over Time**: Investigate how service requests have changed over the years. Are there increasing requests for specific services, indicating growing concerns or changing demographics?
+
+1. **Response Time Analysis**: Assess the city's response times to service requests. Are there delays in certain neighborhoods, and how do these delays impact community trust in municipal services?
+
+1. **Waste Management Challenges**: The high volume of service requests in garbage and recycling indicates potential issues with waste disposal systems, public education on recycling practices, or inefficiencies in the current infrastructure. This story could explore how these challenges affect residents' daily lives and the city's environmental goals.
+
+- *This is the story I will be focusing on for this section.*
+
+#### What Else Would Be Needed to "Tell" This Story?
+
+- **Resident Feedback:** Collecting qualitative data through interviews or surveys with residents could provide insights into their experiences with waste management services, compliance with bylaws, and road conditions.
+- **Statistical Trends:** Analyzing trends over time in the volume of requests can help identify whether these issues are increasing or decreasing and what factors may influence these changes.
+- **City Response Initiatives:** Researching any city-led initiatives or programs aimed at addressing these service request volumes could provide a forward-looking perspective on potential improvements.
+
+#### Potential Interviewees
+
+- **City Waste Management Officials:** To gain insight into the challenges faced in garbage and recycling services and ongoing initiatives.
+- **Bylaw Enforcement Officers:** To understand the common compliance issues they encounter and how they are addressing them.
+- **Residents:** Those who frequently engage with waste management services or have faced issues related to bylaws and road conditions could provide personal narratives that enrich the story.
+
+---
 
 ## 5. Conclusion
 
 Insert text here.
+
+---
 
 ## 6. References
 
