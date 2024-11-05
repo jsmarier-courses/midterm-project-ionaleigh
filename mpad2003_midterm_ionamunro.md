@@ -45,11 +45,11 @@ Steps to import the CSV file manually into Google Sheets:
 
 3. **Import the CSV File:**
    - In Google Sheets, go to **File** > **Import**.
-   - Select **Upload**, then click **Select a file from your device** and locate the CSV file you downloaded.
+   - Select **Upload**, then click **Select a file from your device** and locate the CSV file.
 
 4. **Set Import Options:**
-     - Choose **Replace spreadsheet** to load the CSV data into the new sheet.
-     - Under **Separator type**, select **Comma** to ensure the columns load correctly.
+     - Choose **Replace spreadsheet**.
+     - Under **Separator type**, select **Comma**.
      - Click **Import data**.
 
 ![Imported dataset](MPAD2003A%20Midterm.png)
@@ -59,7 +59,7 @@ Steps to import the CSV file manually into Google Sheets:
 ### General Observations
 
 1. **Structure of the Data**:
-   - The dataset contains **11 columns** and **28,539 rows**. This large number of rows indicates a substantial collection of service requests over time.
+   - The dataset contains **11 columns** and **28,539 rows**.
 
 2. **Cleanliness of the Data**:
    - Overall, the data appears to be organized with clear headings and defined columns. However, there are some values represented as `\N`, which likely indicates missing, undefined, or corrupted data.
@@ -67,10 +67,10 @@ Steps to import the CSV file manually into Google Sheets:
 3. **Specific Column Observations**:
    - **Column A (Service Request ID)**: Features **nominal variables** representing unique identifiers for each service request. This column is crucial for tracking individual requests.
    - **Column B (Status)**: Contains **ordinal/nominal variables** indicating the current status of each request (e.g., Resolved, Active, Cancelled). This column provides insight into the resolution process of municipal operations.
-   - **Column C (Type)**: Includes **nominal variables** detailing the category of service requests (e.g., Garbage and Recycling, Bylaw Services). The variety in this column reflects the range of services provided by the City of Ottawa.
+   - **Column C (Type)**: Includes **nominal variables** detailing the category of service requests (e.g., Garbage and Recycling, Bylaw Services).
 
 4. **Observations of Interest**:
-   - The presence of multiple requests with the same status but different types (e.g., various Garbage and Recycling requests) suggests that certain types of requests are more prevalent.
+   - The presence of multiple requests with the same status but different types suggests that certain types of requests are more prevalent.
    - There are several entries with missing values, particularly in the **Closed Date** and **Address** columns, which could affect analyses related to time taken to resolve requests and spatial analysis of service requests.
 
 5. **Questions/Hypotheses**:
@@ -112,8 +112,8 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 #### 1. Validity
 
 - **Status**: The "Status" column contains "Resolved," "Active," and "Cancelled" entries, which are clear and consistent indicators of each request’s completion status. However, further validation would be beneficial to ensure that all "Resolved" requests genuinely met resolution criteria.
-- **Type**: Categories like "Garbage and Recycling," "Parking Control," and "Bylaw Services" appear valid, matching common municipal service types. However, some categories are broad, which could impact the specificity of any analysis.
-- **Channel**: Channels such as "Dispatch," "Web," "Walk-In," "Email," and "Voice In" are typical ways residents might interact with city services. Each channel appears valid for this context, though verifying that entries accurately reflect the method used for each request would enhance validity.
+- **Type**: Categories like "Garbage and Recycling" and "Parking Control" appear valid, matching common municipal service types; However, some categories are broad, which could impact the specificity of any analysis.
+- **Channel**: Channels such as "Dispatch," "Web," "Walk-In," etc, are typical ways residents interact with city services. Each channel appears valid for this context.
 
   **Example**: The "Resolved" status on a request (e.g., request ID 202457114472 row 387) that closed on the same day it was opened may raise questions about the accuracy of the resolution date.
 
@@ -124,8 +124,8 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 #### 2. Integrity
 
 - **Missing Values**: The dataset contains numerous missing values (`\N`) in columns like "Address," "Latitude," and "Longitude," which limits the completeness of location data.
-- **Consistency**: There may be inconsistencies in the "Type" column, where the same service type might be recorded differently (e.g., “Garbage and Recycling” vs. “Garbage/Recycling”). Ensuring standardization across entries would improve integrity.
-- **Channel Consistency**: Channels are generally consistent with standard options, but it's important to ensure each request is linked to only one primary channel and that entries match the actual method used.
+- **Consistency**: "Type" names appear consistent.
+- **Channel Consistency**: Channels appear consistent with standard options.
 
   **Example**: Requests with "Walk-In" as the channel but missing location details (e.g., address or coordinates) could indicate data entry issues and reduce the dataset's overall integrity.
 
@@ -133,7 +133,7 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 
 #### 3. Meaningfulness
 
-- **Status**: The "Status" column provides clear, meaningful information about each request's completion. However, without specific resolution dates, "Resolved" entries may lack sufficient detail to convey how long issues took to address.
+- **Status**: The "Status" column provides clear, meaningful information about each request's completion. However, the column provides no insight into means of completion/cancellation.
 - **Type and Channel**: The "Type" and "Channel" columns add meaningful context about the nature and reporting method of each request, helping identify trends in how citizens interact with services. For instance, the different channels indicate various ways people access city services, revealing preferences that could inform service improvement.
 
   **Example**: The "Cancelled" status on request ID 202457115065 could indicate duplication, error, or resolution through other means, but without further detail, its meaning may be unclear.
@@ -144,7 +144,7 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 
 #### 4. Organization
 
-- **Column Arrangement**: Columns are arranged logically, starting with request details (e.g., "Status," "Type") and followed by location details (e.g., "Address," "Latitude"), which helps with data interpretation.
+- **Column Arrangement**: Columns are arranged reasonably, starting with request details (e.g., "Status," "Type") and followed by location details (e.g., "Address," "Latitude"), which helps with data interpretation.
 - **Channel Diversity**: Having a range of channels (e.g., "Dispatch," "Web," "Walk-In," "Email," "Voice In") in one column makes the data easy to analyze and simplifies pattern detection. To enhance organization, it may help to group requests by channel to see which are associated with faster resolutions or cancellations.
 
   **Example**: Grouping "Channel" types in relation to "Status" could reveal patterns, such as certain channels (e.g., "Dispatch" vs. "Web") being linked to quicker response times.
@@ -153,23 +153,21 @@ This analysis evaluates the quality, accuracy, and reliability of the dataset us
 
 ### 3.2. Cleaning Data
 
-In this section, I will detail the steps taken to clean the dataset effectively. The cleaning process involved several actions to ensure that the data was accurate, readable, and well-structured. Below are the specific steps I implemented:
+In this section, I will detail the steps taken to clean the dataset effectively:
 
 #### 1. Deleting Empty Columns
 
-- I **removed the empty columns** L and M from the dataset. This helped to streamline the data, making it easier to analyze and visualize.
+- I **removed the empty columns** L and M from the dataset, making it easier to analyze and visualize.
 
 #### 2. Concatenating Open - Close Dates
 
-- I **combined columns E and F** into a single column labeled "Open - Close Date | Date d'ouverture - fermeture". The following formula was used to achieve this:
+- I **combined columns E and F** into a single column,"Open - Close Date | Date d'ouverture - fermeture". The following formula was used:
 
     `=CONCATENATE(H2, ", ", I2)`
 
 - Additionally, to format the dates correctly, I used the following formula:
 
     `=TEXT(E2, "yyyy-mm-dd") & ", " & TEXT(F2, "yyyy-mm-dd")`
-
-- This approach ensures that the dates are presented in a consistent format.
 
 #### 3. Concatenating Latitude and Longitude
 
@@ -179,11 +177,9 @@ In this section, I will detail the steps taken to clean the dataset effectively.
 
 #### 4. Validating Service Requests
 
-- I checked that all service requests contained **valid numbers** by searching for any invalid entries using the following function:
+- I checked that all service requests contained **valid numbers** by searching for any invalid entries using CTRL+F and:
 
     `=IF((ISNUMBER(A2)), "Valid", "Invalid")`
-
-- This method allowed me to ensure that all service request IDs were numeric.
 
 #### 5. Trimming Whitespace
 
@@ -211,8 +207,6 @@ In this section, I will detail the steps taken to clean the dataset effectively.
 
 - Finally, I enabled **text wrapping** for smaller cells, such as those in column F, to enhance readability and presentation of the data.
 
-By following these steps, I ensured that the dataset was clean, organized, and ready for analysis.
-
 ![Cleaned dataset](MPAD2003A%20Cleaned.png)
 *Figure 2: Screenshot of the cleaned data with the first 24 rows visible.*
 
@@ -222,7 +216,7 @@ By following these steps, I ensured that the dataset was clean, organized, and r
 
 #### 3.3.1 Pivot Table
 
-The following **pivot table** summarizes the number of service requests categorized by type, providing a comprehensive view of the issues most frequently reported by residents. By organizing the data into key categories, we can identify patterns and trends in service requests that highlight the areas of concern within the community. The following sections outline the rationale behind selecting specific variables, key findings from the data, and insights into potential next steps for further investigation.
+The following **pivot table** summarizes the number of service requests categorized by type, providing a comprehensive view of the issues most frequently reported by residents. The following sections outline the rationale behind selecting specific variables, key findings from the data, and insights into potential next steps for further investigation.
 <br>
 
 ![Pivot table](MPAD2003A%20Pivot.png)
@@ -231,27 +225,26 @@ The following **pivot table** summarizes the number of service requests categori
 
 #### 3.3.2 Exploratory Chart
 
-I chose to represent the data using a **pie chart** because it effectively highlights the smaller values within the dataset. In cases where some values are significantly larger than others, bar graphs can distort the visual representation, making smaller values appear almost negligible or even zero.
-As noted in Statistics Canada’s guidelines on data visualization, *"pie charts are best used for displaying statistical information when there are no more than six components"* because a pie chart succinctly conveys the proportion of each segment relative to the whole (Statistics Canada, 2021). This is particularly useful when components are small and need to be clearly distinguished, as emphasized in their discussion of pie charts: *“the area of each segment is the same proportion of a circle as the category is of the total data set”* (Statistics Canada, 2021).
+I chose to represent the data using a **pie chart** because it effectively highlights the smaller values within the dataset. As noted in Statistics Canada’s guidelines on data visualization, *"pie charts are best used for displaying statistical information when there are no more than six components"* because a pie chart succinctly conveys the proportion of each segment relative to the whole (Statistics Canada, 2021).
 <br>
 
-![Pie Chart](MPAD2003A%20Pivot.png)
+![Pie Chart](MPAD2003A%20Pie%20Chart.png)
 *Figure 4: Pie chart showing the number of service requests per type in percentage format.*
 <br>
 
 #### 3.3.3 Analysis
 
 1. **Why did you choose these variables in particular?**
-   - I chose to analyze the **Type** of service requests because it provides insight into the types of issues being reported to the city of Ottawa. Understanding the distribution of service requests allows us to identify which areas are most frequently engaged by residents and where the city may need to focus its resources.
+   - I chose to analyze the **Type** of service requests because understanding the distribution of service requests allows us to identify where the city may need to focus its resources.
 
 1. **Does a particular number or statistic stand out?**
    - The most significant statistic is the **Garbage and Recycling** category, which accounts for **10,257 requests**, making up **35.94%** of all service requests. This large proportion indicates that garbage and recycling services are a major concern for residents.
 
 1. **What did you learn? What's the potential story here?**
-   - The data suggests that waste management is a critical area for city services in Ottawa, as indicated by the high volume of service requests in **Garbage and Recycling**. This could imply issues related to waste disposal, recycling education, or perhaps even the city's infrastructure for handling waste. Additionally, **Bylaw Services** and **Roads and Transportation** also show substantial request counts (19.77% and 14.77%, respectively), suggesting these are other areas needing attention and potential improvements.
+   - The data suggests that waste management is a critical area for city services in Ottawa, as indicated by the high volume of service requests in **Garbage and Recycling**. This could imply issues related to waste disposal, recycling education, or perhaps even the city's infrastructure for handling waste.
 
 1. **Which variables and numbers would warrant further investigation (next step)?**
-   - Further investigation into the **Garbage and Recycling** requests could help to understand the specific issues being reported (e.g., missed pickups, need for additional bins). Additionally, exploring the **Bylaw Services** requests could reveal trends in community compliance and enforcement issues. Analyzing seasonal trends in requests or demographic factors influencing service requests could provide valuable insights for city planning and resource allocation.
+   - Further investigation into the **Garbage and Recycling** requests could help to understand the specific issues being reported (e.g., missed pickups, need for additional bins). Additionally, exploring the **Bylaw Services** requests could reveal trends in community compliance and enforcement issues.
 
 ---
 
@@ -259,40 +252,45 @@ As noted in Statistics Canada’s guidelines on data visualization, *"pie charts
 
 ### Potential Story Ideas
 
-1. **Impact of Service Requests on Community Well-being**: Explore how service requests correlate with community satisfaction and well-being. Are there specific areas in Ottawa that report more issues? What does this say about those neighborhoods?
-
-1. **Trends Over Time**: Investigate how service requests have changed over the years. Are there increasing requests for specific services, indicating growing concerns or changing demographics?
+1. **Impact of Service Requests on Community Well-being**: Explore how service requests correlate with community satisfaction and well-being. Are there specific areas in Ottawa that report more issues? Why?
 
 1. **Response Time Analysis**: Assess the city's response times to service requests. Are there delays in certain neighborhoods, and how do these delays impact community trust in municipal services?
 
-1. **Waste Management Challenges**: The high volume of service requests in garbage and recycling indicates potential issues with waste disposal systems, public education on recycling practices, or inefficiencies in the current infrastructure. This story could explore how these challenges affect residents' daily lives and the city's environmental goals.
+1. **Waste Management Challenges**: The high volume of service requests in garbage and recycling indicates potential issues with waste disposal systems, public education on recycling practices, or inefficiencies in the current infrastructure.
 
-- *This is the story I will be focusing on for this section.*
+- *I will focus on #3.*
 
 #### What Else Would Be Needed to "Tell" This Story?
 
 - **Resident Feedback:** Collecting qualitative data through interviews or surveys with residents could provide insights into their experiences with waste management services, compliance with bylaws, and road conditions.
-- **Statistical Trends:** Analyzing trends over time in the volume of requests can help identify whether these issues are increasing or decreasing and what factors may influence these changes.
 - **City Response Initiatives:** Researching any city-led initiatives or programs aimed at addressing these service request volumes could provide a forward-looking perspective on potential improvements.
 
 #### Potential Interviewees
 
 - **City Waste Management Officials:** To gain insight into the challenges faced in garbage and recycling services and ongoing initiatives.
 - **Bylaw Enforcement Officers:** To understand the common compliance issues they encounter and how they are addressing them.
-- **Residents:** Those who frequently engage with waste management services or have faced issues related to bylaws and road conditions could provide personal narratives that enrich the story.
+
+#### Research
+
+During my research, I found a **CBC article** (Skura, 2024) discussing Ottawa's new curbside garbage limit, aimed at reducing waste. The article notes public disappointment and concerns from environmentalists about its effectiveness.
+
+I also came across **Victor Tran’s article** in *The Peak*, which states that Canadians produced the most garbage per capita in 2019 and violated international agreements by exporting waste to developing countries. Tran advocates for stronger recycling policies, like those in Germany (Tran, 2023).
+
+Finally, an **Ottawa Citizen report** indicated that Ottawa is planning changes to its garbage collection system, such as limiting garbage bags and introducing a pay-per-bag system. (Willing, 2021).
 
 ---
 
 ## 5. Conclusion
 
-Insert text here.
+Completing this assignment was **challenging**, especially cleaning the large spreadsheet, which initially felt daunting. However, once I organized the data for better readability, the process became manageable. The most **rewarding** aspect was the satisfaction of cleaning the data and inadvertently thinking of potential stories before reaching that section as I was familiar enough with the data. I realized I had **gaps in my understanding** of the significance of data, especially considering that I was working with 30,000 rows from just one month. In hindsight, I might have explored a **different** angle/story, such as examining the impact of seasonal changes on service requests.
 
 ---
 
 ## 6. References
 
-Include a list of your references here. Please follow [APA guidelines for references](https://apastyle.apa.org/style-grammar-guidelines/references). Hanging paragraphs aren't required though.
-
-**Here's an example:**
-
-Bounegru, L., & Gray, J. (Eds.). (2021). *The Data Journalism Handbook 2: Towards A Critical Data Practice*. Amsterdam University Press. [https://ocul-crl.primo.exlibrisgroup.com/permalink/01OCUL_CRL/hgdufh/alma991022890087305153](https://ocul-crl.primo.exlibrisgroup.com/permalink/01OCUL_CRL/hgdufh/alma991022890087305153)
+- Cairo, A. (2016). *The Truthful Art: Data, Charts, and Maps for Communication*. Pearson Education.
+- Eads, D. (2015, October 15). How to 'interview' a big pile of data. NPR Training. Retrieved November 4, 2024, from [https://training.npr.org/2015/10/15/what-to-do-with-a-big-pile-of-data/](https://training.npr.org/2015/10/15/what-to-do-with-a-big-pile-of-data/)
+- Laucius, J. (2023, November 21). Environment committee contemplates extending life of Trail Road dump. Ottawa Citizen. Retrieved November 4, 2024, from [https://ottawacitizen.com/news/local-news/environment-committee-asks-for-feasibility-study-on-incinerator-for-ottawas-garbage](https://ottawacitizen.com/news/local-news/environment-committee-asks-for-feasibility-study-on-incinerator-for-ottawas-garbage)
+- Statistics Canada. (2021, September 2). Statistics: Power from Data! Statistics Canada. Retrieved November 4, 2024, from [https://www150.statcan.gc.ca/n1/edu/power-pouvoir/toc-tdm/5214718-eng.htm](https://www150.statcan.gc.ca/n1/edu/power-pouvoir/toc-tdm/5214718-eng.htm)
+- Tran, V. (2023, January 31). Canada! We need to talk about our garbage. The Peak. Retrieved November 4, 2024, from [https://the-peak.ca/2023/01/canada-we-need-to-talk-about-our-garbage/](https://the-peak.ca/2023/01/canada-we-need-to-talk-about-our-garbage/)
+- Willing, J. (2021, August 12). City's survey on garbage collection foreshadows rules on amount of trash households can send to the dump. Ottawa Citizen. Retrieved November 4, 2024, from [https://ottawacitizen.com/news/local-news/citys-survey-on-garbage-collection-foreshadows-rules-on-amount-of-trash-households-can-send-to-the-dump](https://ottawacitizen.com/news/local-news/citys-survey-on-garbage-collection-foreshadows-rules-on-amount-of-trash-households-can-send-to-the-dump)
